@@ -9,7 +9,7 @@ import random
 address = 'bc1q2ymw5y2pkj6qa3c4s23n2ruzg95w2gvu7pcmmm'
 nonce   = hex(random.randint(0,2**32-1))[2:].zfill(8)
 
-host    = 'stratum+tcp://bs.poolbinance.com'
+host    = 'solo.ckpool.org'
 port    = 3333
 
 print("address:{} nonce:{}".format(address,nonce))
@@ -25,7 +25,7 @@ response = json.loads(lines[0])
 sub_details,extranonce1,extranonce2_size = response['result']
 
 #authorize workers
-sock.sendall(b'{"params": ["'+address.encode()+b'", "password"], "Ryantavares.001": 1, "method": "mining.authorize"}\n')
+sock.sendall(b'{"params": ["'+address.encode()+b'", "password"], "id": 1, "method": "mining.authorize"}\n')
 
 #we read until 'mining.notify' is reached
 response = b''
